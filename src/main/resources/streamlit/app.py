@@ -16,9 +16,7 @@ def main():
         role = st.sidebar.selectbox("Role", ["student", "teacher"])
         if st.sidebar.checkbox("Login"):
             payload = {"srn": srn, "password": password, "role": role}
-            print(payload)
             response = requests.post(f"{BACKEND_URL}/auth/login", json=payload)
-            print(response.status_code)
             if response.status_code == 200:
                 user = response.json()
                 st.success(f"Logged in as {user['role']}")
